@@ -1,0 +1,73 @@
+---
+title: "R Cheat Sheet - Plotting"
+output:
+html_document:
+theme: cerulean
+---
+
+<style type="text/css">
+
+body{ /* Normal  */
+      font-size: 12px;
+  }
+td {  /* Table  */
+  font-size: 8px;
+}
+h1.title {
+  font-size: 38px;
+  color: DarkRed;
+}
+h1 { /* Header 1 */
+  font-size: 28px;
+  color: DarkBlue;
+}
+h2 { /* Header 2 */
+    font-size: 22px;
+  color: DarkBlue;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+  font-family: "Times New Roman", Times, serif;
+  color: DarkBlue;
+}
+code.r{ /* Code block */
+    font-size: 12px;
+}
+pre { /* Code block - determines code spacing between lines */
+    font-size: 14px;
+}
+</style>
+
+
+
+
+# ggplot2
+
+
+### Barc chart, grouped
+
+```{r echo=T}
+library(ggplot2)
+
+Animals = read.table(header=TRUE,
+                     text=
+'Category        Reason     Species
+1   Decline       Genuine      24
+2  Improved       Genuine      16
+3  Improved Misclassified      85
+4   Decline Misclassified      41
+5   Decline     Taxonomic       2
+6  Improved     Taxonomic       7
+7   Decline       Unclear      41
+8  Improved       Unclear     117'
+)
+
+xaxorder = c("Taxonomic","Genuine","Unclear","Misclassified")
+ggplot(Animals, aes(factor(Reason, levels = xaxorder), Species, fill = Category)) +
+       geom_bar(stat="identity", position = "dodge") +
+       scale_fill_brewer(palette = "Set1") +
+       ggtitle("This is the main title") +
+       xlab('This is the x-label')
+
+```
+
