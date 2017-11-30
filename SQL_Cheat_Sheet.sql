@@ -156,7 +156,7 @@ UNION ALL
 SELECT 'B', 2008, 3
 UNION ALL 
 SELECT 'C', 2008, 5
-
+GO
 -- 1st calculated column is put to OUTER APPLY
 -- 2nd calculated column can be done in SELECT
 SELECT 
@@ -167,6 +167,18 @@ SELECT
 	,B.new_col + 2 AS new_col2
 FROM #temp_test AS A
 OUTER APPLY (SELECT [year] - [value] as new_col ) AS B
+GO
+
+-- Second outer apply can use first outer apply!
+SELECT 
+	 [name]
+	,[year]
+	,[value]
+	,B.new_col
+	,C.new_col2
+FROM #temp_test AS A
+OUTER APPLY (SELECT [year] - [value] as new_col ) AS B
+OUTER APPLY (SELECT B.new_col + 5 as new_col2 ) AS C
 
 /****************CLOSE*********************/
 
