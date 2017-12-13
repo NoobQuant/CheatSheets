@@ -135,6 +135,40 @@ SELECT * FROM #temp_test
 
 
 
+-- Pivoting table
+/*****************OPEN*********************/
+
+IF OBJECT_ID('tempdb..#temp_test') IS NOT NULL DROP TABLE #temp_test 
+SELECT 'A' AS [name], 2007 AS [year] , 4 AS [value] 
+INTO #temp_test
+UNION ALL 
+SELECT 'A', 2008, 4
+UNION ALL 
+SELECT 'B', 2007, 2
+UNION ALL 
+SELECT 'B', 2008, 8
+UNION ALL 
+SELECT 'C', 2007, 3
+UNION ALL 
+SELECT 'C', 2008, 3
+
+SELECT * FROM #temp_test
+
+SELECT *
+FROM 
+(
+  SELECT [name], [year], [value]
+  FROM #temp_test
+) src
+PIVOT
+(
+  SUM([value])
+  FOR [name] in ([A], [B], [C])
+) piv
+
+/****************CLOSE*********************/
+
+
 
 
 -- Avoid nested loops due to calculated columns using OUTER APPLY
