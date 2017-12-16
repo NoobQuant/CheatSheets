@@ -234,3 +234,50 @@ parent table, plus will show a null if no result from the function
 ****************CLOSE*********************/
 
 
+
+-- Lead/lag
+/*****************OPEN*********************/
+
+-- Wider format
+IF OBJECT_ID('tempdb..#temp_test') IS NOT NULL DROP TABLE #temp_test 
+
+SELECT 2007 AS [year], 3 AS val1, 1 AS val2 
+INTO #temp_test 
+
+UNION ALL 
+SELECT 2008, 5, 9
+UNION ALL 
+SELECT 2009, 7, 3
+GO
+
+select 
+	 a.*
+	,Lag(val1, 1, NULL) over (order by [year] asc) as val1_lag
+	,Lag(val2, 1, NULL) over (order by [year] asc) as val2_lag
+from #temp_test AS a
+
+
+-- Long format
+IF OBJECT_ID('tempdb..#temp_test') IS NOT NULL DROP TABLE #temp_test 
+
+SELECT 'A' AS [name], 2007 AS [year] , 4 AS [value] 
+INTO #temp_test 
+
+UNION ALL 
+SELECT 'B', 2007, 6
+UNION ALL 
+SELECT 'C', 2007, 2
+UNION ALL 
+SELECT 'A', 2008, 1
+UNION ALL 
+SELECT 'B', 2008, 3
+UNION ALL 
+SELECT 'C', 2008, 5
+GO
+
+select 
+	 a.*
+	,Lag([value], 1, NULL) over (partition by [name] order by [name], [year] asc) as Lag1
+from #temp_test AS a
+
+/****************CLOSE*********************/
