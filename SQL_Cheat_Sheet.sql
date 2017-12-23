@@ -288,13 +288,14 @@ from #temp_test AS a
 /*****************OPEN*********************/
 IF OBJECT_ID('tempdb..#temp_test1') IS NOT NULL DROP TABLE #temp_test1
 IF OBJECT_ID('tempdb..#temp_test2') IS NOT NULL DROP TABLE #temp_test2
+IF OBJECT_ID('tempdb..#temp_test3') IS NOT NULL DROP TABLE #temp_test3
 
 
 SELECT *
 INTO #temp_test1
 FROM
 (
-	SELECT 'A' AS col1, 'ee' AS col2, 2007 AS val1 , 4 AS val2 
+	SELECT 'A' AS col1, 'ee' AS col2, NULL AS val1 , NULL AS val2
 	UNION ALL 
 	SELECT 'B', 'ee', NULL, NULL
 	UNION ALL 
@@ -324,6 +325,23 @@ FROM
 	SELECT 'C', 'ff', NULL, NULL
 ) as b
 
+SELECT *
+INTO #temp_test3
+FROM
+(
+	SELECT 'A' AS col1, 'ee' AS col2, 2007 AS val1 , 10 AS val2 
+	UNION ALL 
+	SELECT 'B', 'ee', NULL, NULL
+	UNION ALL 
+	SELECT 'C', 'ee', NULL, NULL
+	UNION ALL 
+	SELECT 'A', 'ff', NULL, NULL
+	UNION ALL 
+	SELECT 'B', 'ff', NULL, NULL
+	UNION ALL 
+	SELECT 'C', 'ff', NULL, NULL
+) as c
+
 
 SELECT *
 FROM #temp_test1
@@ -331,14 +349,19 @@ FROM #temp_test1
 SELECT *
 FROM #temp_test2
 
+SELECT *
+FROM #temp_test3
+
 SELECT 
 	 e.col1
 	,e.col2
-	,concat(e.val1, r.val1) as concatval1
-	,concat(e.val2, r.val2) as concatval2
+	,concat(e.val1, r.val1, t.val1) as concatval1
+	,concat(e.val2, r.val2, t.val2) as concatval2
 FROM #temp_test1 e
 LEFT JOIN #temp_test2 r
 ON e.col1 = r.col1 and e.col2 = r.col2
+LEFT JOIN #temp_test3 t
+ON e.col1 = T.col1 and e.col2 = t.col2
 
 
 /****************CLOSE*********************/
