@@ -281,3 +281,64 @@ select
 from #temp_test AS a
 
 /****************CLOSE*********************/
+
+
+
+-- Merge two tables and overlay columns
+/*****************OPEN*********************/
+IF OBJECT_ID('tempdb..#temp_test1') IS NOT NULL DROP TABLE #temp_test1
+IF OBJECT_ID('tempdb..#temp_test2') IS NOT NULL DROP TABLE #temp_test2
+
+
+SELECT *
+INTO #temp_test1
+FROM
+(
+	SELECT 'A' AS col1, 'ee' AS col2, 2007 AS val1 , 4 AS val2 
+	UNION ALL 
+	SELECT 'B', 'ee', NULL, NULL
+	UNION ALL 
+	SELECT 'C', 'ee', 2007, 8
+	UNION ALL 
+	SELECT 'A', 'ff', 2008, 1
+	UNION ALL 
+	SELECT 'B', 'ff', NULL, NULL
+	UNION ALL 
+	SELECT 'C', 'ff', 2008, 5
+) as a
+
+SELECT *
+INTO #temp_test2
+FROM
+(
+	SELECT 'A' AS col1, 'ee' AS col2, NULL AS val1 , NULL AS val2 
+	UNION ALL 
+	SELECT 'B', 'ee', 2451, 9
+	UNION ALL 
+	SELECT 'C', 'ee', NULL, NULL
+	UNION ALL 
+	SELECT 'A', 'ff', NULL, NULL
+	UNION ALL 
+	SELECT 'B', 'ff', 2512, 41
+	UNION ALL 
+	SELECT 'C', 'ff', NULL, NULL
+) as b
+
+
+SELECT *
+FROM #temp_test1
+
+SELECT *
+FROM #temp_test2
+
+SELECT 
+	 e.col1
+	,e.col2
+	,concat(e.val1, r.val1) as concatval1
+	,concat(e.val2, r.val2) as concatval2
+FROM #temp_test1 e
+LEFT JOIN #temp_test2 r
+ON e.col1 = r.col1 and e.col2 = r.col2
+
+
+/****************CLOSE*********************/
