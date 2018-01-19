@@ -365,3 +365,14 @@ ON e.col1 = T.col1 and e.col2 = t.col2
 
 
 /****************CLOSE*********************/
+
+-- Determine ynderlying types form varchars
+/*****************OPEN*********************/
+
+declare @test nvarchar(3) = '   '
+declare @test2 nvarchar(3) = 'rge'
+declare @test3 nvarchar(3) = '014'
+
+select CAST(@test AS float), ISNUMERIC(@test2), ISNUMERIC(@test3) 
+
+select SQL_VARIANT_PROPERTY('aa', 'BaseType'), SQL_VARIANT_PROPERTY('012', 'BaseType'), SQL_VARIANT_PROPERTY(cast('012' as float), 'BaseType'); 
