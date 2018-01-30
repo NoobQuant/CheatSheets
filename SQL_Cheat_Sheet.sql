@@ -218,6 +218,30 @@ OUTER APPLY (SELECT B.new_col + 5 as new_col2 ) AS C
 
 
 
+-- Custom ORDER BY
+/**************************************/
+
+IF OBJECT_ID('tempdb..#temp_test') IS NOT NULL DROP TABLE #temp_test 
+SELECT 'A' AS [name], 2007 AS [year] , 4 AS [value] 
+INTO #temp_test 
+UNION ALL 
+SELECT 'B', 2007, 6
+UNION ALL 
+SELECT 'C', 2007, 2
+UNION ALL 
+SELECT 'A', 2008, 1
+UNION ALL 
+SELECT 'B', 2008, 3
+UNION ALL 
+SELECT 'C', 2008, 5
+
+SELECT * FROM #temp_test
+ORDER BY case
+		when [name] = 'B' then 1
+		when [name] = 'C' then 2
+		when [name] = 'A' then 3
+		end asc
+
 
 
 -- Info on CROSS APPLY vs OUTER APPLY
