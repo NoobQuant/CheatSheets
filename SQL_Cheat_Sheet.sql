@@ -400,3 +400,53 @@ declare @test3 nvarchar(3) = '014'
 select CAST(@test AS float), ISNUMERIC(@test2), ISNUMERIC(@test3) 
 
 select SQL_VARIANT_PROPERTY('aa', 'BaseType'), SQL_VARIANT_PROPERTY('012', 'BaseType'), SQL_VARIANT_PROPERTY(cast('012' as float), 'BaseType'); 
+
+
+
+
+-- FULL OUTER JOIN
+/*****************OPEN*********************/
+
+
+WITH tab1 AS
+(
+	SELECT 'A' AS [name], 2007 AS [year] , 4 AS [value] 
+	UNION ALL 
+	SELECT 'B', 2008, 6
+	UNION ALL 
+	SELECT 'C', 2009, 2
+),
+tab2 AS
+(
+	SELECT 'A' AS [name], 2007 AS [year] , 'tree' AS [stringfield] 
+	UNION ALL 
+	SELECT 'A' AS [name], 2008 AS [year] , 'tres' AS [stringfield] 
+	UNION ALL 
+	SELECT 'B', 2008, 'one'
+)
+
+
+-- all fields form both
+SELECT 
+	 tab1.[name]
+	,tab1.[year]
+	,tab1.[value]
+	,tab2.[name]
+	,tab2.[year]
+	,tab2.[stringfield]
+FROM tab1
+FULL outer join tab2
+ON		tab1.[name] = tab2.[name]
+	and tab1.[year] = tab2.[year]
+
+
+
+-- common fields lef tout
+SELECT *
+FROM tab1
+FULL outer join tab2
+ON tab1.[name] = tab2.[name]
+
+
+/****************CLOSE*********************/
+
