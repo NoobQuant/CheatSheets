@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Title</title>
+
+	<script src="https://d3js.org/d3.v4.js" charset="utf-8"></script>
+
+</head>
+<body>
+
+	<script>
+
+
+	// Canvas
+	var svg = d3.select("body")
+		.append("svg")
+		.attr("width", 500)
+		.attr("height", 200);
+
+
+	// Rectangle
+	var data = [[[20,30],[40,50]] ,[[50,60],[70,80]]]; //[x0,y0][x1,y1]
+	var rectangles = svg.selectAll("rect")
+		.data(data)
+		.enter()
+		.append("rect")
+		.attr("x", d=> d[0][0])
+		.attr("y", d=> d[0][1])
+		.attr("width", d=> d[1][0] - d[0][0])
+		.attr("height", d=> d[1][1] - d[0][1])
+		.attr("fill", "steelblue");
+
+
+	</script>	
+</body>
+</html>
