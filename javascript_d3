@@ -30,6 +30,39 @@
 		.attr("height", d=> d[1][1] - d[0][1])
 		.attr("fill", "steelblue");
 
+	// Dots
+	var data = [
+			[10,10],[60,80],[100,120]			
+				];
+	svg.selectAll("dot")
+      .data(data)
+	  .enter()
+	  .append("circle")
+      .attr("r", 5)
+      .attr("cx", d=> d[0])
+      .attr("cy", d=> d[1]);		
+
+
+	// Plot axes
+	var xScale = d3.scaleLinear().range([0, 400]).domain([0,400]);
+	var yScale = d3.scaleLinear().range([150, 0]).domain([0,300]);
+
+	var xAxis = d3.axisBottom()
+	    .scale(xScale);
+
+	var yAxis = d3.axisLeft()
+	    .scale(yScale);
+
+	svg.append("g")
+	  .attr("transform", "translate("+ 300 + "," + 200 + ")")
+	  .call(d3.axisBottom(xScale)
+			  .ticks(5));
+	
+	svg.append("g")
+	  .attr("transform", "translate("+ 300 + "," + 50 + ")")	
+	  .call(d3.axisLeft(yScale)
+			  .ticks(5));	
+
 
 	</script>	
 </body>
