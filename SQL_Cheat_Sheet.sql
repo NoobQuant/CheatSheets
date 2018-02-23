@@ -450,3 +450,23 @@ ON tab1.[name] = tab2.[name]
 
 /****************CLOSE*********************/
 
+-- Counts from multiple tables
+/*****************OPEN*********************/
+
+SELECT  
+(
+    SELECT COUNT(*)
+    FROM tab1
+) AS count1,
+(
+    SELECT COUNT(*)
+    FROM tab2
+) AS count2,
+(
+    SELECT COUNT(*)
+    FROM tab3
+) AS count3
+
+
+/****************CLOSE*********************/
+
