@@ -470,3 +470,33 @@ SELECT
 
 /****************CLOSE*********************/
 
+
+
+
+-- Sum column values and show in another column
+/*****************OPEN*********************/
+
+WITH tab as
+(
+	SELECT 'A' AS [name], 2007 AS [year] , 4 AS [value] 
+
+	UNION ALL 
+	SELECT 'B', 2007, 6
+	UNION ALL 
+	SELECT 'C', 2007, 2
+	UNION ALL 
+	SELECT 'A', 2008, 1
+	UNION ALL 
+	SELECT 'B', 2008, 3
+	UNION ALL 
+	SELECT 'C', 2008, 5
+)
+
+select *, SUM([value]) OVER() from tab
+
+/****************CLOSE*********************/
+
+
+
+
+
