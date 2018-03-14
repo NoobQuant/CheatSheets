@@ -500,3 +500,54 @@ select *, SUM([value]) OVER() from tab
 
 
 
+
+
+
+
+
+
+/****************CLOSE*********************/
+
+
+
+-- Multi-Statement Table-Valued Function
+/*****************OPEN*********************/
+
+CREATE FUNCTION schema.function_name(
+	  -- input variables  
+)
+
+RETURNS @Output TABLE
+(
+	 -- output column types
+)
+AS
+BEGIN
+	
+	-- one can e.g. declare table variables
+	DECLARE @tab AS schema.TT_tab
+	INSERT @tab
+	SELECT *
+	FROM some_table
+
+
+
+
+	-- one can have IF ELSE clauses!
+	IF EXISTS(
+		select SopimusNumeroId
+		from some_table
+	)
+	BEGIN
+		-- do someting
+	END
+	ELSE
+	BEGIN
+		-- do something
+	END
+
+-- this is needed
+RETURN
+
+END
+
