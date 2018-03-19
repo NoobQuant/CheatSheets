@@ -6,8 +6,28 @@
 ***********************************************************************/
 
 
+/**********************************************************************
+		Search tables, views  with name having
+***********************************************************************/
+SELECT * FROM INFORMATION_SCHEMA.TABLES 
+WHERE TABLE_NAME LIKE '%SAP%'
 
 
+/**********************************************************************
+		Update column properties
+***********************************************************************/
+
+-- remove ceortain character
+UPDATE my_table SET my_column = REPLACE(my_column,'"','');
+
+-- set some string to NULL
+update my_table
+set my_column = NULL
+WHERE my_column = 'NA';
+
+-- change column type
+ALTER TABLE my_table
+ALTER COLUMN my_column int; 
 
 /**********************************************************************
 		Modifications to data base table
