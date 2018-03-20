@@ -69,3 +69,13 @@ df = as.data.frame(melt(as.matrix(df)))
 df
 ```
 
+### Statistics Finalnd API
+
+```{r echo=T}
+library(pxweb) # Install pxweb package if needed: ( install.packages("pxweb") )
+
+# interactive_pxweb() fails if proxy server is not set up properly in R:
+Sys.setenv(page = "proxy_url")
+
+# Use interactive_pxweb() to access the data:
+data <- interactive_pxweb()
