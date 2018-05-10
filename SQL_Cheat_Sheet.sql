@@ -6,8 +6,28 @@
 ***********************************************************************/
 
 
+/**********************************************************************
+		Search tables, views  with name having
+***********************************************************************/
+SELECT * FROM INFORMATION_SCHEMA.TABLES 
+WHERE TABLE_NAME LIKE '%SAP%'
 
 
+/**********************************************************************
+		Update column properties
+***********************************************************************/
+
+-- remove ceortain character
+UPDATE my_table SET my_column = REPLACE(my_column,'"','');
+
+-- set some string to NULL
+update my_table
+set my_column = NULL
+WHERE my_column = 'NA';
+
+-- change column type
+ALTER TABLE my_table
+ALTER COLUMN my_column int; 
 
 /**********************************************************************
 		Modifications to data base table
@@ -469,4 +489,85 @@ SELECT
 
 
 /****************CLOSE*********************/
+
+
+
+
+-- Sum column values and show in another column
+/*****************OPEN*********************/
+
+WITH tab as
+(
+	SELECT 'A' AS [name], 2007 AS [year] , 4 AS [value] 
+
+	UNION ALL 
+	SELECT 'B', 2007, 6
+	UNION ALL 
+	SELECT 'C', 2007, 2
+	UNION ALL 
+	SELECT 'A', 2008, 1
+	UNION ALL 
+	SELECT 'B', 2008, 3
+	UNION ALL 
+	SELECT 'C', 2008, 5
+)
+
+select *, SUM([value]) OVER() from tab
+
+/****************CLOSE*********************/
+
+
+
+
+
+
+
+
+
+
+
+/****************CLOSE*********************/
+
+
+
+-- Multi-Statement Table-Valued Function
+/*****************OPEN*********************/
+
+CREATE FUNCTION schema.function_name(
+	  -- input variables  
+)
+
+RETURNS @Output TABLE
+(
+	 -- output column types
+)
+AS
+BEGIN
+	
+	-- one can e.g. declare table variables
+	DECLARE @tab AS schema.TT_tab
+	INSERT @tab
+	SELECT *
+	FROM some_table
+
+
+
+
+	-- one can have IF ELSE clauses!
+	IF EXISTS(
+		select SopimusNumeroId
+		from some_table
+	)
+	BEGIN
+		-- do someting
+	END
+	ELSE
+	BEGIN
+		-- do something
+	END
+
+-- this is needed
+RETURN
+
+END
 
