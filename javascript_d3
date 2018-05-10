@@ -64,6 +64,124 @@
 			  .ticks(5));	
 
 
+
+	////////////////////////////////////////////////////////////////////////////////
+	// Function for a scatter plot
+	///////////////////////////////////////////////////////////////////////////////
+function LinRegPlot(){
+
+	// Data aligned to plot
+	var data = [
+				 [0,1]
+				,[20,1]
+				,[25,1]
+				,[80,1]
+				,[100,1]
+				,[150,1]
+				,[140,0]
+				,[160,0]
+				,[200,0]
+				,[210,0]
+				,[225,0]
+				,[250,0]																			
+				];
+
+	var data_line = [
+				 [50,1.0]
+				,[200,0]															
+				];    				
+
+	var xPoint = 450
+	var yPoint = 40
+	var xRange = [0,300]
+	var yRange = [0, 200]
+	var xDomain = [0, 300]
+	var yDomain = [
+				   d3.min(data, function(d) { return d[1];})
+				  ,d3.max(data, function(d) { return d[1];})
+				  ];
+
+	// Set the ranges
+	var yRangeInv = [yRange[1], yRange[0]]
+	var xScale = d3.scaleLinear().range(xRange).domain(xDomain);
+	var yScale = d3.scaleLinear().range(yRangeInv).domain(yDomain);
+
+	// Plot axes
+    var plot = svg.append("g")
+			    .attr("transform", "translate(" + xPoint + "," + yPoint + ")");
+	var xAxis = d3.axisBottom().scale(xScale);
+	var yAxis = d3.axisLeft().scale(yScale);
+
+	plot.append("g")
+	  .attr("transform", "translate("+ yRange[0] + "," + yRange[1] + ")")
+	  .call(d3.axisBottom(xScale)
+			  .ticks(5));
+
+	plot.append("g")	
+	  .call(d3.axisLeft(yScale)
+			  .ticks(5));
+
+	// Scatter dots
+	plot.selectAll("dot")
+      .data(data)
+	  .enter()
+	  .append("circle")
+      .attr("r", 5)
+      .attr("cx", d=> ((xRange[1] - xRange[0])/(xDomain[1] - xDomain[0])) * d[0])
+      .attr("cy", d=> ( (yRange[1] - yRange[0]) - ((yRange[1] - yRange[0])/(yDomain[1] - yDomain[0])) * d[1] ));      
+
+	// Regression line
+	var valueline = d3.line()
+	    .x(function(d) { return xScale(d[0]); })
+	    .y(function(d) { return yScale(d[1]); });
+
+    plot.append("path")
+        .data([data_line])
+        .attr("class", "line")
+        .attr("d", valueline);       
+
+};
+
+
+function DrawBox(point, side, time){
+
+	var xPoint = point[0];
+	var yPoint = point[1];
+
+	 var lineData0 = [ { "x": xPoint, "y": yPoint},  { "x": xPoint + side,  "y": yPoint},];
+	 var lineData1 = [ { "x": xPoint + side,   "y": yPoint},  { "x": xPoint + side,  "y": yPoint + side},];
+	 var lineData2 = [ { "x": xPoint + side,   "y": yPoint + side},  { "x": xPoint,  "y": yPoint + side},];
+	 var lineData3 = [ { "x": xPoint,   "y": yPoint + side},  { "x": xPoint,  "y": yPoint},];   
+	 var allLines = [lineData0, lineData1, lineData2, lineData3]
+
+	 var lineFunction = d3.line()
+                          .x(function(d) { return d.x; })
+                          .y(function(d) { return d.y; })
+                          .curve(d3.curveBasis);
+
+	for (i = 0; i < allLines.length; i++) {
+
+		var lineGraph = svg.append("path")
+		                        .attr("d", lineFunction(allLines[i]))                            
+	                            .attr("stroke", "red")
+	                            .attr("stroke-width", 2)
+	                            .attr("fill", "none");
+
+		var totalLength = lineGraph.node().getTotalLength();
+
+	    lineGraph
+	      .attr("stroke-dasharray", totalLength + " " + totalLength)
+	      .attr("stroke-dashoffset", totalLength)
+	      .transition()
+          .duration(time)
+          .delay(time*i)
+          .ease(d3.easeLinear)
+          .attr("stroke-dashoffset", 0);
+	};
+
+};
+
+
 	</script>	
 </body>
 </html>
