@@ -10,7 +10,31 @@
 		Search tables, views  with name having
 ***********************************************************************/
 SELECT * FROM INFORMATION_SCHEMA.TABLES 
-WHERE TABLE_NAME LIKE '%SAP%'
+WHERE TABLE_NAME LIKE '%some_name%'
+
+
+/**********************************************************************
+		Query infos
+***********************************************************************/
+SELECT [spid]
+      ,[blocked]
+      ,[waittime]
+      ,[status]
+      ,[cmd]
+      ,[hostname]
+      ,[nt_username]
+      ,[databasename]
+      ,[program_name]
+  FROM [dbo].[schema].[v_Processes]
+--where blocked > 0 
+where spid = 188 
+
+
+USE dbo GO
+sp_who 
+
+
+
 
 
 /**********************************************************************
@@ -570,4 +594,36 @@ BEGIN
 RETURN
 
 END
+
+
+
+
+
+-- Descriptive statistics by GROUP BY
+/*****************OPEN*********************/
+
+IF OBJECT_ID('tempdb..#temp_test') IS NOT NULL DROP TABLE #temp_test 
+SELECT 'A' AS [name], 2007 AS [year] , 4 AS [value] 
+INTO #temp_test
+UNION ALL 
+SELECT 'A', 2008, 4
+UNION ALL 
+SELECT 'B', 2007, 2
+UNION ALL 
+SELECT 'B', 2008, 8
+UNION ALL 
+SELECT 'C', 2007, 3
+UNION ALL 
+SELECT 'C', 2008, 3
+
+SELECT
+	 [name]
+	,count(*) as N
+	,sum([value]) as value_sum
+FROM #temp_test
+GROUP BY [name]
+
+/****************CLOSE*********************/
+
+
 
