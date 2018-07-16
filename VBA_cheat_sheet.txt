@@ -1,0 +1,59 @@
+
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''
+' Housekeeping
+''''''''''''''''''''''''''''''''''''''''''''''''''''
+Option Explicit
+Application.ScreenUpdating = False
+Application.EnableEvents = False
+Application.Calculation = xlManual
+Application.DisplayAlerts = False
+
+Application.DisplayAlerts = True
+Application.Calculation = xlAutomatic
+Application.EnableEvents = True
+Application.ScreenUpdating = True
+
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''
+' Defining variables
+''''''''''''''''''''''''''''''''''''''''''''''''''''
+' current workbook as variable
+Dim sourcewb As Workbook
+Set sourcewb = ActiveWorkbook
+
+' given workbook as variable
+Dim targetPath As String
+Dim targetFile As String
+Dim targetwb As Workbook
+targetPath = "\\\my_path\is\here"
+targetFile = sourcewb.Sheets("mysheet").Range("D5").Value 'pick name form cell
+Set targetwb = Workbooks.Open(targetPath & "\" & targetFile)
+
+' set sheet variable
+Dim sourceSheet As Worksheet
+Set sourceSheet = sourcewb.Sheets("my_sheet")
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''
+' Handy row num range function
+''''''''''''''''''''''''''''''''''''''''''''''''''''
+Dim rowNumRangeTarget As Range
+Set rowNumRangeTarget = FindRowNumRange(targetSheet)
+
+Function FindRowNumRange(sht As Worksheet) As Range
+    Dim Rng As Range
+    With sht.Range("A:G")
+        Set Rng = .Find(What:="RowNum", _
+                        After:=.Cells(.Cells.Count), _
+                        LookIn:=xlValues, _
+                        LookAt:=xlWhole, _
+                        SearchOrder:=xlByRows, _
+                        SearchDirection:=xlNext, _
+                        MatchCase:=False)
+        If Not Rng Is Nothing Then
+            Set FindRowNumRange = Rng
+        Else
+            MsgBox "RowNum not found!"
+        End If
+    End With
+End Function

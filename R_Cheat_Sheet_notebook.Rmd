@@ -78,4 +78,63 @@ library(pxweb) # Install pxweb package if needed: ( install.packages("pxweb") )
 Sys.setenv(page = "proxy_url")
 
 # Use interactive_pxweb() to access the data:
-data <- interactive_pxweb()
+data = interactive_pxweb()
+```
+
+
+### Housekeeping
+```{r echo=T}
+
+# Clear variable space
+rm(list=ls(all=TRUE)) 
+
+# Clear console
+clc <- function() cat(rep("\n",100))
+clc()
+
+# Set as working directory the folder where the script is 
+# being run from
+this.dir <- dirname(parent.frame(2)$ofile)
+setwd(this.dir)
+```
+
+### SQL write
+```{r echo=T}
+library(RODBC)
+sqlChannel = odbcDriverConnect("driver={SQL Server};server={server_name};trusted_connection=true;Database = dbo_name")
+# Some query, here drop table with name in variable tablename
+tablename = "my_table"
+sqlQuery(sqlChannel, paste0("DROP TABLE ", tablename, ";"))
+# Save data frame as table
+sqlSave(sqlChannel, d_final,tablename,rownames=FALSE)
+odbcClose(sqlChannel)
+```
+
+
+
+### Get Excel workbook
+```{r echo=T}
+library(XLConnect)
+fileXls = "excel_name.xlsx"
+wbook = loadWorkbook(fileXls, create = FALSE)
+
+# Get average adjusted migration matrix for R-rating over time
+data = readWorksheet(
+                      wbook
+                     ,sheet    = "sheet_name"
+                     ,startRow = 4
+                     ,endRow   = 4
+                     ,startCol = 2
+                     ,endCol   = 2
+                      )
+```
+
+
+
+
+
+
+
+
+
+
