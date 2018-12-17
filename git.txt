@@ -8,9 +8,16 @@ Basics
 git init
 
 
-# In commit window
+# In commit window, how to write commit text
 https://stackoverflow.com/questions/19085807/please-enter-a-commit-message-to-explain-why-this-merge-is-necessary-especially
 
+
+# Ignore uncommited changes
+git checkout path_to_file
+
+git checkout -f path_to_file # -f is for force
+
+git checkout . # discard changes for whole current directory
 
 ################################################
 Github
