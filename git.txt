@@ -19,6 +19,18 @@ git checkout -f path_to_file # -f is for force
 
 git checkout . # discard changes for whole current directory
 
+
+##############
+Untrack file
+##############
+
+# Remove tracking on all machines
+git rm -r --cached <file>
+
+# Ignore changes temporarily
+git update-index --assume-unchanged path/to/file # untrack
+git update-index --no-assume-unchanged path/to/file # start tracking again
+
 ################################################
 Github
 ################################################
