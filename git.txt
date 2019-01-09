@@ -1,8 +1,12 @@
-
-
 ################################################
 Basics
 ################################################
+
+# set username globally
+got config --global user.name = my_name
+
+# query username and email along with other config stuff
+git config --list
 
 # initilize local repo
 git init
@@ -12,13 +16,58 @@ git init
 https://stackoverflow.com/questions/19085807/please-enter-a-commit-message-to-explain-why-this-merge-is-necessary-especially
 
 
-# Ignore uncommited changes
-git checkout path_to_file
+# See commits that have affected a file
+git log -- file_name
 
-git checkout -f path_to_file # -f is for force
+# Git text window
+i : start typin
+esc : exit typing modeto command mode
+:wq :commit message and exit
+:q :  exit without commiting
 
-git checkout . # discard changes for whole current directory
+##############
+Working tree change
+##############
+# Difference between working tree and staging area. Staging area is by default unmodified working tree!
+git diff
 
+##############
+Undo working tree change
+##############
+
+# check which fiels in working tree have changed
+git checkout
+
+# Ignore changes and return to working tree (use -- for files to avoid ambiguity)
+git checkout stuff       # checkout the branch stuff
+git checkout -- stuff    # checkout the file stuff
+git checkout .           # discard changes for whole current directory
+
+##############
+Staging
+##############
+
+# add all
+git add -A
+
+# Stage only modified and deleted files, not untracked ones
+git add -u
+
+# Difference between staging area and latest commit
+git diff --staged file_name
+
+##############
+Unstaging
+##############
+# HEAD refers to most recent commit
+git reset HEAD file_name
+
+##############
+Committing
+##############
+git commit -m "comment here"
+
+git commit -a -m "comment here" commits all changed, unstaged files
 
 ##############
 Untrack file
@@ -31,6 +80,104 @@ git rm -r --cached <file>
 git update-index --assume-unchanged path/to/file # untrack
 git update-index --no-assume-unchanged path/to/file # start tracking again
 
+
+##############
+Restore file from earlier commit
+##############
+git checkout hash_key -- file_name
+
+##############
+Aliases
+Creat an alias for a long command
+##############
+alias alias_name = "your_command_here"
+
+################################################
+Branching
+
+all branches have same working tree!
+https://stackoverflow.com/questions/8111991/git-is-automatically-merging-changes-from-a-different-branch-to-master
+################################################
+
+# easy way to check on which branch we are
+git status
+
+# Branch graph
+git log --all --decorate --oneline --graph
+
+# List all branches
+git branch
+
+# Create branch
+git branch branch_name
+
+# checkout branch
+git checkout branch_name
+
+# delete branch
+#   warning "branch is not fully merged" means that commits in 
+#   branch are not reachable from any of: its upstream branch, or HEAD 
+git branch -d branch_name
+
+##############
+Check what has already been merged
+##############
+
+# lists branches merged into master
+git branch --merged master
+
+# list branches merged into HEAD (i.e. tip of current branch)
+git branch --merged
+
+# list branches that have not been merged
+git branch --no-merged
+
+##############
+Fast-forward merge
+For direct merge to catch one branch with another
+Example:              Ff-merge ===>
+--O--master--branch1                --O--base--master
+                                               branch1
+##############
+git checkout master
+git merge branch1
+
+##############
+Three-way merge
+Example:
+        branch_2                           branch2
+         /				  /       \
+        /         3-way-merge ===>       /         \
+       /			        /           \
+--O--base--master                --O--base--branch1--master
+           branch1                         
+
+Here branch2 cannot be merged directly eg. with master, otherwise
+we lose changes from branch1. Three-way merge looks at base, 
+branch1 and branch2
+##############
+git checkout master
+git merge branch2
+
+##############
+Merge conflicts
+##############
+CONTINUE https://youtu.be/FyAAIHHClqI?t=899
+
+################################################
+Remotes
+################################################
+
+git remote -v
+
+################################################
+.gitignore
+Put files here you want git to ignore
+################################################
+file_name : ignore file file_name
+*.png : ignore all png files
+folder_name/ : exclude everything in folder folder_name
+
 ################################################
 Github
 ################################################
@@ -39,5 +186,15 @@ Github
 Initialize new Gitub repo
 ##############
 https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
+
+# Verifies the new remote URL
+git remote -v
+
+
+
+
+
+
+
 
 
