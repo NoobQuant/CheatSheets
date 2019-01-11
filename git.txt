@@ -1,6 +1,8 @@
 ################################################
 Basics
 ################################################
+# clear bash console
+clear
 
 # set username globally
 got config --global user.name = my_name
@@ -11,10 +13,8 @@ git config --list
 # initilize local repo
 git init
 
-
 # In commit window, how to write commit text
 https://stackoverflow.com/questions/19085807/please-enter-a-commit-message-to-explain-why-this-merge-is-necessary-especially
-
 
 # See commits that have affected a file
 git log -- file_name
@@ -42,6 +42,29 @@ git checkout
 git checkout stuff       # checkout the branch stuff
 git checkout -- stuff    # checkout the file stuff
 git checkout .           # discard changes for whole current directory
+
+##############
+Stash working tree changes
+##############
+https://youtu.be/FyAAIHHClqI?t=1327
+https://stackoverflow.com/questions/20537223/when-should-i-use-git-stash
+
+##############
+Detached HEAD, a.k.a. see earlier commits
+##############
+
+# See hashes
+git log
+
+# Checkout certain hash
+git checkout hash_key
+
+# If one wants, one can create a branch at the commit
+git branch new_branch_name
+git checkout new_branch_name
+
+# Return HEAD to master branch
+git checkout master
 
 ##############
 Staging
@@ -168,7 +191,26 @@ CONTINUE https://youtu.be/FyAAIHHClqI?t=899
 Remotes
 ################################################
 
+# Displa remotes
+git remote
+
+# See full locations
 git remote -v
+
+# Check at what state remote origin is
+git fetch origin
+
+# ..and merge local with origin
+git merge origin/master
+
+# Combined git fetch and git merge as convenience method
+git pull
+
+# push changes from local to remote
+git push origin master
+
+# Add second upstream in addition to origin
+https://youtu.be/Gg4bLk8cGNo?t=1215
 
 ################################################
 .gitignore
@@ -189,12 +231,5 @@ https://help.github.com/articles/adding-an-existing-project-to-github-using-the-
 
 # Verifies the new remote URL
 git remote -v
-
-
-
-
-
-
-
 
 
