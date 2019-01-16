@@ -88,9 +88,14 @@ git reset HEAD file_name
 ##############
 Committing
 ##############
+# Commit staged changes
 git commit -m "comment here"
 
+# Stage and commit in same command
 git commit -a -m "comment here" commits all changed, unstaged files
+
+# Change most recent commit message
+git commit --amend
 
 ##############
 Untrack file
@@ -127,6 +132,7 @@ git status
 
 # Branch graph
 git log --all --decorate --oneline --graph
+alias graph="git log --all --decorate --oneline --graph"
 
 # List all branches
 git branch
