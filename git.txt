@@ -1,3 +1,11 @@
+
+################################################
+    GIT CHEAT SHEET
+
+    Good playlist:
+    https://youtu.be/FyAAIHHClqI?t=899
+################################################
+
 ################################################
 Basics
 ################################################
@@ -120,6 +128,11 @@ Creat an alias for a long command
 ##############
 alias alias_name = "your_command_here"
 
+##############
+Reverting to earlier commit
+##############
+https://stackoverflow.com/questions/4114095/how-to-revert-a-git-repository-to-a-previous-commit
+
 ################################################
 Branching
 
@@ -191,7 +204,19 @@ git merge branch2
 ##############
 Merge conflicts
 ##############
-CONTINUE https://youtu.be/FyAAIHHClqI?t=899
+
+# abort merging
+git merge --abort
+
+# Once conflicts are fixed and staged, bu you are still merging
+git commit
+
+##############
+Rebasing
+##############
+
+# this is somewhat similar to merge
+# see e.g. http://lea.verou.me/2011/10/easily-keep-gh-pages-in-sync-with-master/
 
 ################################################
 Remotes
@@ -238,4 +263,9 @@ https://help.github.com/articles/adding-an-existing-project-to-github-using-the-
 # Verifies the new remote URL
 git remote -v
 
+##############
+gh-pages
+##############
+http://oli.jp/2011/github-pages-workflow/
+http://lea.verou.me/2011/10/easily-keep-gh-pages-in-sync-with-master/
 
