@@ -251,6 +251,16 @@ file_name : ignore file file_name
 *.png : ignore all png files
 folder_name/ : exclude everything in folder folder_name
 
+
+################################################
+Detach (move) subdirectory into separate Git repository
+################################################
+The Easy Way, see here:
+https://stackoverflow.com/questions/359424/detach-move-subdirectory-into-separate-git-repository/17864475#17864475
+
+
+
+
 ################################################
 Github
 ################################################
