@@ -21,11 +21,14 @@ git config --list
 # initilize local repo
 git init
 
-# In commit window, how to write commit text
-https://stackoverflow.com/questions/19085807/please-enter-a-commit-message-to-explain-why-this-merge-is-necessary-especially
-
 # See commits that have affected a file
 git log -- file_name
+
+# List all tracked files
+git ls-tree --full-tree -r --name-only HEAD
+
+# In commit window, how to write commit text
+https://stackoverflow.com/questions/19085807/please-enter-a-commit-message-to-explain-why-this-merge-is-necessary-especially
 
 # Git text window
 i : start typin
@@ -247,10 +250,15 @@ https://youtu.be/Gg4bLk8cGNo?t=1215
 .gitignore
 Put files here you want git to ignore
 ################################################
+vi .gitignore
+
 file_name : ignore file file_name
 *.png : ignore all png files
 folder_name/ : exclude everything in folder folder_name
 
+# If gitignored folder is already commited, it needs to be
+# removed from cahce
+git rm -r --cached folder_name
 
 ################################################
 Detach (move) subdirectory into separate Git repository
