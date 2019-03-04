@@ -82,7 +82,11 @@ USE dbo
 GO
 sp_who 
 
-
+/******************************************************
+		Query user rights current database or single table
+******************************************************/
+SELECT * FROM fn_my_permissions (NULL, 'DATABASE')
+SELECT HAS_PERMS_BY_NAME('<table>', 'OBJECT', 'SELECT');
 
 /**********************************************************************
 		Basic table operations
