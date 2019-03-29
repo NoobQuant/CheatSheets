@@ -180,6 +180,8 @@ git clone path_to_repo/.git
 # Clone specific branch from repo to another folder
 # => Go to where clone should be set up
 git clone --single-branch --branch branch_name path_to_repo/.git
+# If we also want to remove link to origin
+git remote remove origin
 
 ##############
 Check what has already been merged
