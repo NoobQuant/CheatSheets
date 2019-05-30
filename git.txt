@@ -280,6 +280,14 @@ folder_name/ : exclude everything in folder folder_name
 git rm -r --cached folder_name
 
 ################################################
+Typical list for .gitignore
+################################################
+.ipynb_checkpoints
+__pycache__
+*.Rhistory
+.vscode/
+
+################################################
 Detach (move) subdirectory into separate Git repository
 ################################################
 The Easy Way, see here:
