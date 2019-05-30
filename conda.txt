@@ -27,3 +27,6 @@ conda create --prefix=my_custom_path\my_env_name python=3.6.7
 
 # Create new environment with default anaconda packages
 conda create --prefix=my_custom_path\my_env_name anaconda
+
+# remove environment
+conda env remove --name env_name
