@@ -24,3 +24,6 @@ conda create my_env_name
 # Create new environment with custom path and python version
 conda config --append envs_dirs my_custom_path # make sure custom location is discoverable for conda
 conda create --prefix=my_custom_path\my_env_name python=3.6.7
+
+# Create new environment with default anaconda packages
+conda create --prefix=my_custom_path\my_env_name anaconda
