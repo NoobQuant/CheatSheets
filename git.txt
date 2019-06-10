@@ -251,6 +251,19 @@ git tag -l
 git checkout tags/<tag_name> -b <branch_name>
 
 ################################################
+Stashing
+################################################
+
+# Create stash for surrent state
+git stash
+# Do stuff elsewhere, once ready to apply stah on current HEAD
+git stash apply
+# To get rid of stash, first list stashes
+git stash list
+# Remove stash with id (e.g. stash@{0})
+git stash drop <stash_id>
+
+################################################
 Remotes
 ################################################
 
