@@ -30,3 +30,6 @@ conda create --prefix=my_custom_path\my_env_name anaconda
 
 # remove environment
 conda env remove --name env_name
+
+# Clone existing environment
+conda create --name <new_env> --clone <old_env>
