@@ -267,7 +267,7 @@ git stash drop <stash_id>
 Remotes
 ################################################
 
-# Displa remotes
+# Display remotes
 git remote
 
 # See full locations
@@ -287,6 +287,14 @@ git push origin master
 
 # Add second upstream in addition to origin
 https://youtu.be/Gg4bLk8cGNo?t=1215
+
+##############
+Cloning repo
+##############
+git clone http://git.abc.net/git/abc.git
+
+# Clone only certain branch/tag, with no non-current history
+git clone --branch <branch of tag name> --depth 1 http://git.abc.net/git/abc.git
 
 ################################################
 .gitignore
