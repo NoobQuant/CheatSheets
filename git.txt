@@ -253,6 +253,10 @@ git checkout tags/<tag_name> -b <branch_name>
 # Create tag to HEAD
 git tag -a v0.1.0 -m "my version 0.1.0"
 
+# Git does not push tags by default to remote.
+# Ensure this by including --tags
+git push origin mybranch --tags
+
 ################################################
 Stashing
 ################################################
