@@ -250,6 +250,9 @@ git tag -l
 # Chekout certain tag
 git checkout tags/<tag_name> -b <branch_name>
 
+# Create tag to HEAD
+git tag -a v0.1.0 -m "my version 0.1.0"
+
 ################################################
 Stashing
 ################################################
