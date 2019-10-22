@@ -306,6 +306,10 @@ file_name : ignore file file_name
 *.png : ignore all png files
 folder_name/ : exclude everything in folder folder_name
 
+# Ignore folder except one file
+folder/*
+!folder/my_file
+
 # If gitignored folder is already commited, it needs to be
 # removed from cahce
 git rm -r --cached folder_name
