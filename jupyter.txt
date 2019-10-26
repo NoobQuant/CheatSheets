@@ -1,0 +1,11 @@
+################################################
+    JUPYTER CHEAT SHEET
+    For Jupyter Notebooks and Jupyter Lab.
+################################################
+
+# Convert .ipynb to .html with hidden cells
+# Tag cells in Jupyter Notebook:
+# - to hide completely: remove_cell
+# - to hide just input of the cell: remove_input
+# Then run following in Naconda prompt:
+jupyter nbconvert <filename>.ipynb --TagRemovePreprocessor.remove_cell_tags="{'remove_cell'}" --TagRemovePreprocessor.remove_input_tags="{'remove_input'}"
