@@ -159,10 +159,14 @@ git branch branch_name
 # checkout branch
 git checkout branch_name
 
-# delete branch
+# delete branch locally
 #   warning "branch is not fully merged" means that commits in 
 #   branch are not reachable from any of: its upstream branch, or HEAD 
 git branch -d branch_name
+
+# delete branch from remote
+# https://stackoverflow.com/questions/2003505/how-do-i-delete-a-git-branch-locally-and-remotely
+git push -d <remote_name> <branch_name>
 
 # Create new branch with no history
 # Convenient for hidig legazy from public repo
