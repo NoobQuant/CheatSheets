@@ -234,6 +234,17 @@ Merge conflicts
 # abort merging
 git merge --abort
 
+# Opening mergetool to resolve a merge conflict
+    # If not run previously, configure merge tool
+    git config merge.tool vimdiff
+    git config merge.conflictstyle diff3
+    git config mergetool.prompt false
+    
+    # Run mergetool and resolve conflict
+    # More help here:
+    # https://stackoverflow.com/questions/161813/how-to-resolve-merge-conflicts-in-git
+    git mergetool
+    
 # Once conflicts are fixed and staged, bu you are still merging
 git commit
 
