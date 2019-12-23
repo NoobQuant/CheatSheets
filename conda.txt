@@ -44,6 +44,7 @@ Setting up Data Science development environment
 # Useful links:
 # - https://stackoverflow.com/questions/38066873/create-anaconda-python-environment-with-all-packages
 # - https://towardsdatascience.com/a-guide-to-conda-environments-bc6180fc533
+# - https://community.rstudio.com/t/why-not-r-via-conda/9438/3
 #
 # additional_packages.txt:
 #  rpy2==2.9.4
