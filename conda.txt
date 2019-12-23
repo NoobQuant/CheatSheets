@@ -33,3 +33,26 @@ conda env remove --name env_name
 
 # Clone existing environment
 conda create --name <new_env> --clone <old_env>
+
+################################################
+Setting up Data Science development environment
+################################################
+# - Python 3.6/ Latest R version
+# - Bundles of essential Python/R packages
+# - Additional packages (e.g. rpy2)
+# - RStudio
+# Useful links:
+# - https://stackoverflow.com/questions/38066873/create-anaconda-python-environment-with-all-packages
+# - https://towardsdatascience.com/a-guide-to-conda-environments-bc6180fc533
+#
+# additional_packages.txt:
+#  rpy2==2.9.4
+
+# Install base packages and programs
+conda config --append envs_dirs <my_custom_path>
+conda create --prefix <my_custom_path>\<env_name> anaconda python=3.6 r-essentials r-base
+# install additional packages
+conda activate <env_name>
+conda install -y --file <path_to_additional_packages.txt>
+# install rstudio
+conda install -c r rstudio
