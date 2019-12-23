@@ -49,6 +49,9 @@ Setting up Data Science development environment
 # additional_packages.txt:
 #  rpy2==2.9.4
 
+################
+# Installation
+################
 # Install base packages and programs
 conda config --append envs_dirs <my_custom_path>
 conda create --prefix <my_custom_path>\<env_name> anaconda python=3.6 r-essentials r-base
@@ -57,3 +60,40 @@ conda activate <env_name>
 conda install -y --file <path_to_additional_packages.txt>
 # install rstudio
 conda install -c r rstudio
+
+# Done!
+
+################
+# Addig packages
+################
+
+# Always try conda install first. This downloads packages to Anaconda installation
+# directory home\Anaconda3\pkgs where conda environments knows to fetch and install them.
+conda install <pckg_name>
+
+# Python packages tend to be well available via conda install.
+# Some R packages/their correct version are not available via conta install. If desired R package
+# is not found via conda, install it via R to R lib path. A few things before this:
+#  - If possible, install needed dependencies via conda first.
+#  - Make sure conda lib path <my_custom_path>\<env_name>\Lib\R\library comes before R default lib path.
+#    This makes sure when importing in R conda installed packages come first.
+.libPaths( new=c( "<my_custom_path>/<env_name>/Lib/R/library" , .libPaths() ) )
+#    To make lib path ordering permanent, add the same line to .Rprofile file under
+#    <my_custom_path>/<env_name>/Lib/R/library/base/R  -> DOES NOT WORK SOMEHOW!
+#  - Install package via R to R default lib path, e.g. "home/Documents/R/win-library/3.6".
+#    Try first without installing dependencies, as we tried to include them via conda.
+#    If this fails or dependencies installed via conda have wrong versions available,
+#    let R installation install also dependencies. In summary:
+#    First try
+install.packages("mylib", lib="home/Documents/R/win-library/3.6", dependencies = FALSE)
+#    If it does not work, try
+install.packages("mylib", lib="home/Documents/R/win-library/3.6", dependencies = FALSE)     
+
+################
+# Loading packages
+################
+# Make sure conda lib path comes first in .libPaths(). It could even be made the only path
+# if we are sure that we don't need any manually installed packages.
+# If we want to be sure where we download a package from, use lib.loc parameter
+library(pckg, lib.loc = "home/Documents/R/win-library/3.6")
+library(pckg, lib.loc = "<my_custom_path>/<env_name>/Lib/R/library")
