@@ -97,3 +97,9 @@ install.packages("mylib", lib="home/Documents/R/win-library/3.6", dependencies =
 # If we want to be sure where we download a package from, use lib.loc parameter
 library(pckg, lib.loc = "home/Documents/R/win-library/3.6")
 library(pckg, lib.loc = "<my_custom_path>/<env_name>/Lib/R/library")
+
+################
+# Note about conda envs and Jupyter
+https://stackoverflow.com/questions/39604271/conda-environments-not-showing-up-in-jupyter-notebook/56409235#56409235
+################
+One should only install jupyter in one env, where you also install nb_conda_kernels. In all other envs you install ipykernel. Always launch jupyter notebook from the single env that has jupyter installed, then you can choose your the other envs as kernels.
