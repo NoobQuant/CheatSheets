@@ -260,6 +260,9 @@ Rebasing
 #https://stackoverflow.com/questions/5340724/get-changes-from-master-into-branch-in-git?answertab=votes#tab-top
 git checkout project
 git rebase master
+# Notice if you afterwards want to push project into remote, you might need to
+# force it:
+git push --force origin project
 
 ################################################
 Tags
