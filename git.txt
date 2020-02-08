@@ -252,8 +252,14 @@ git commit
 Rebasing
 ##############
 
-# this is somewhat similar to merge
+# Somewhat similar to merge
 # see e.g. http://lea.verou.me/2011/10/easily-keep-gh-pages-in-sync-with-master/
+
+# One key usage cases: master has some general enhancements (e.g. bug fixes)
+# and one wants to include these also in separate project branch "project"
+#https://stackoverflow.com/questions/5340724/get-changes-from-master-into-branch-in-git?answertab=votes#tab-top
+git checkout project
+git rebase master
 
 ################################################
 Tags
