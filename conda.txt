@@ -69,9 +69,13 @@ conda install -c r rstudio
 
 # Always try conda install first. This downloads packages to Anaconda installation
 # directory home\Anaconda3\pkgs where conda environments knows to fetch and install them.
+conda activate <env_name>
 conda install <pckg_name>
 
-# Python packages tend to be well available via conda install.
+# Python packages tend to be well available via conda install. However, if it is not, one can also try to install via pip to the conda enviroment (see http://know.continuum.io/rs/387-XNW-688/images/conda-cheatsheet.pdf):
+conda activate <env_name>
+pip install <pckg_name>
+
 # Some R packages/their correct version are not available via conta install. If desired R package
 # is not found via conda, install it via R to R lib path. A few things before this:
 #  - If possible, install needed dependencies via conda first.
