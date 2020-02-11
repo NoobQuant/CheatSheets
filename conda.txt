@@ -91,7 +91,7 @@ pip install <pckg_name>
 #    First try
 install.packages("mylib", lib="home/Documents/R/win-library/3.6", dependencies = FALSE)
 #    If it does not work, try
-install.packages("mylib", lib="home/Documents/R/win-library/3.6", dependencies = FALSE)     
+install.packages("mylib", lib="home/Documents/R/win-library/3.6", dependencies = TRUE)     
 
 ################
 # Loading packages
