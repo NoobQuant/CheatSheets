@@ -112,3 +112,11 @@ https://stackoverflow.com/questions/39604271/conda-environments-not-showing-up-i
 # If desired envis not visible in Jupyter, run this:
 source activate <env_name>
 python -m ipykernel install --user --name <env_name> --display-name "Python (env_name)"
+
+
+################################################
+Meta-stuff (e.g. Anaconda)
+################################################
+
+# Anaconda promt to right-click menu
+https://gist.github.com/jiewpeng/8ba446acf329b1801bf91db767d179ea
