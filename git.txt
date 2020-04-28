@@ -171,7 +171,14 @@ git push -d <remote_name> <branch_name>
 # Create new branch with no history
 # Convenient for hidig legazy from public repo
 git checout --orphan branch_name
-git commit "init branch with no istory"
+git commit "init branch with no history"
+
+# Rename branch locally and remotely
+# https://multiplestates.wordpress.com/2015/02/05/rename-a-local-and-remote-branch-in-git/
+git activate <old_name>
+git branch -m <new_name>
+git push origin :<old_name> <new_name>
+git push origin -u <new_name>
 
 ##############
 Makes clones of another repository
