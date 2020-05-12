@@ -125,6 +125,29 @@ https://stackoverflow.com/questions/39604271/conda-environments-not-showing-up-i
 source activate <env_name>
 python -m ipykernel install --user --name <env_name> --display-name "Python (env_name)"
 
+################################################
+Ready-made yml file to set up a dev environment
+dev_env.yml
+################################################
+name: dev
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  # Python related
+  - anaconda=custom=py36_1 # this might install jupyter as well, might only want ipykernel if jupyter already in base env! Check!
+  - python=3.6
+  - numpy=1.16.4       # downgrade for rpy2
+  - pandas=0.25.0      # downgrade for rpy2
+  - rpy2=2.9.4         # rpy2 3.x does not work on Windows
+  - tzlocal=2.0.0      # needed for rpy2
+  # R related (needs checking)
+  - r-base
+  - r-essentials
+  - r-tidyverse
+  - rstudio
+  - rtools
+prefix: path_to_anaconda_envs
 
 ################################################
 Meta-stuff (e.g. Anaconda)
