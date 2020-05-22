@@ -47,9 +47,10 @@ Tested on Windows machine and Anaconda3 distribution *2020.02-Windows-x86_64*.
    - *~/Anaconda3/Library/usr/bin*
    - *~/Anaconda3/Library/bin*
    - *~/Anaconda3/Scripts*
- - Install *dev* environemnt from
-   - (*OS specific*) specification .txt file *nq_dev_py36_r36.txt*: ```conda env create --name dev --file nq_dev_py36_r36.txt```
-   - (*OS unspecific*) environment .yml file *nq_dev_py36_r36.yml*: ```conda env create --file nq_dev_py36_r36.yml``` ==>  **seems to have problem with R paths on my Windows machine!**.   
+ - Install *dev* environemnt either by
+   - (*OS specific*) running specification .txt file *nq_dev_py36_r36.txt*: ```conda env create --name dev --file nq_dev_py36_r36.txt```
+   - (*OS unspecific*) running environment .yml file *nq_dev_py36_r36.yml*: ```conda env create --file nq_dev_py36_r36.yml``` ==>  **seems to have problem with R paths on my Windows machine!**.
+   - running installation commands on conda prompt (see section *Constructing environment specification files* below).
  - Register Jupyter kernels for to be used from *base*. This should add kernels under user folder, e.g. *C:\Users\<myusername>\AppData\Roaming\jupyter\kernels*
 
 ```
@@ -111,10 +112,10 @@ Some R packages/their correct version are not available via ```conda install```.
 - When using R insallation of a package try first without installing dependencies, as we try to include them via conda. If this fails or dependencies installed via conda have wrong versions available, let R installation install also dependencies. That is: First try <br>```install.packages("mylib", lib="some_R_lib_path", dependencies = FALSE)()))```<br>
 If it does not work, try<br>```install.packages("mylib", lib="some_R_lib_path", dependencies = TRUE)```.
 
-### Constructing environmant specification files
+### Constructing environment specification files
 
 The *dev* environment yml was constructed as follows:
-  - Download Anaconda3 installation *2020.02-Windows-x86_64* and install it (archive of Anaconda installations can be found  [here](https://repo.anaconda.com/archive/)). This generates the base conda environment (containing e.g. Jupyter).
+  - Download Anaconda3 installation *2020.02-Windows-x86_64* and install it (archive of Anaconda installations can be found [here](https://repo.anaconda.com/archive/)). This generates the base conda environment (containing e.g. Jupyter).
   - Create new temporary environment *temp*
     - pandas and numpy downgraded to match with rpy2
 ```
@@ -124,6 +125,7 @@ conda install -c r r r-essentials rstudio r-tidyverse rtools r-rjsdmx r-seasonal
 conda install rpy2==2.9.4
 ```
   - Exported *temp* environment to .yml ```conda env export > nq_dev_py36_r36.yml```. Renamed name "temp" in file to "dev" and removed explicit prefix from end.
+    - **This probably needs to be changed** to ```conda env export --no-builds > nq_dev_py36_r36.yml```; see [here](https://github.com/ContinuumIO/anaconda-issues/issues/9480)
   - Exported *temp* environment to .txt ```conda list --explicit > nq_dev_py36_r36.txt```. Remove line "@EXPLICIT" as this seems to thrown an error when creating an environment.
 
 
