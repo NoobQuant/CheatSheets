@@ -124,6 +124,7 @@ conda activate temp
 conda install -c r r r-essentials rstudio r-tidyverse rtools r-rjsdmx r-seasonal r-wavelets
 conda install rpy2==2.9.4
 ```
+  - **Possible problem: seems that this produces environemnt with numpy of correct version but newer numpy-base; might result import numpy to import wrong one!**
   - Exported *temp* environment to .yml ```conda env export > nq_dev_py36_r36.yml```. Renamed name "temp" in file to "dev" and removed explicit prefix from end.
     - **This probably needs to be changed** to ```conda env export --no-builds > nq_dev_py36_r36.yml```; see [here](https://github.com/ContinuumIO/anaconda-issues/issues/9480)
   - Exported *temp* environment to .txt ```conda list --explicit > nq_dev_py36_r36.txt```. Remove line "@EXPLICIT" as this seems to thrown an error when creating an environment.
