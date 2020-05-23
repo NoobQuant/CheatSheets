@@ -1,3 +1,6 @@
+# Minimalistic .py test file
+# See python.ipynb for more robust tests.
+ 
 import sys
 print(sys.executable)
 print(sys.path)

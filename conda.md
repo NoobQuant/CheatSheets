@@ -36,7 +36,7 @@ conda create --prefix=my_custom_path\my_env_name python=3.6.7
 ### Anaconda promt to right-click menu
 https://gist.github.com/jiewpeng/8ba446acf329b1801bf91db767d179ea
 
-## NoobQuant conda environment (Python 3.6.10 and R 3.6.1)
+## NoobQuant conda environment (Python 3.6.10 and R 3.6.0)
 
 ### Installing
 
@@ -49,6 +49,7 @@ Tested on Windows machine and Anaconda3 distribution *2020.02-Windows-x86_64*.
    - *~/Anaconda3/Scripts*
  - Install *dev* environemnt either by
    - (*OS specific*) running specification .txt file *nq_dev_py36_r36.txt*: ```conda env create --name dev --file nq_dev_py36_r36.txt```
+     - If error raised try removing line "@EXPLICIT" from the file and try again.
    - (*OS unspecific*) running environment .yml file *nq_dev_py36_r36.yml*: ```conda env create --file nq_dev_py36_r36.yml``` ==>  **seems to have problem with R paths on my Windows machine!**.
    - running installation commands on conda prompt (see section *Constructing environment specification files* below).
  - Register Jupyter kernels for to be used from *base*. This should add kernels under user folder, e.g. *C:\Users\<myusername>\AppData\Roaming\jupyter\kernels*
@@ -119,16 +120,13 @@ The *dev* environment yml was constructed as follows:
   - Create new temporary environment *temp*
     - pandas and numpy downgraded to match with rpy2
 ```
-conda create --name temp anaconda python=3.6 numpy=1.16.4 pandas=0.25.0
+conda create --name temp anaconda python=3.6 numpy=1.16.4 numpy-base=1.16.4 tzlocal=2.0.0 pandas=0.25.0
 conda activate temp
-conda install -c r r r-essentials rstudio r-tidyverse rtools r-rjsdmx r-seasonal r-wavelets
+conda install -c r r=3.6.0 r-base=3.6.0 r-essentials=3.6.0 r-tidyverse=1.2.1 rtools=3.4.0 r-rjsdmx=2.1_0 r-seasonal=1.7.0 r-wavelets=0.3_0.1 rstudio=1.1.456
 conda install rpy2==2.9.4
 ```
-  - **Problem: seems that above might produce environemnt with numpy=1.16.4 but numpy-base=1.18 (prolly due to rather new Anaconda distribution used here); then import numpy might result in import of wrong one and rpy2 does not work! Need to set explicitly numpy-base=1.16.4. Also add tzlocal=2.0.0**
-  - Exported *temp* environment to .yml ```conda env export > nq_dev_py36_r36.yml```. Renamed name "temp" in file to "dev" and removed explicit prefix from end.
-    - **This probably needs to be changed** to ```conda env export --no-builds > nq_dev_py36_r36.yml```; see [here](https://github.com/ContinuumIO/anaconda-issues/issues/9480)
-  - Exported *temp* environment to .txt ```conda list --explicit > nq_dev_py36_r36.txt```. Remove line "@EXPLICIT" as this seems to thrown an error when creating an environment.
-
+  - Exported *temp* environment to .yml ```conda env export --no-builds > nq_dev_py36_r36.yml``` (why *--no-builds* see [here](https://github.com/ContinuumIO/anaconda-issues/issues/9480)). Renamed name "temp" in file to "dev" and removed explicit prefix from end.
+  - Exported *temp* environment to .txt ```conda list --explicit > nq_dev_py36_r36.txt```.
 
 ### Other useful links
  - https://stackoverflow.com/questions/38066873/create-anaconda-python-environment-with-all-packages

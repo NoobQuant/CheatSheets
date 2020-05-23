@@ -1,6 +1,9 @@
+# Minimalistic .R test file
+# See R.ipynb for more robust tests.
 
-file.path(R.home("bin"), "R")
-
+# Load some stuff
 library(tidyverse)
 library(ggplot2)
-library(RJSDMX)
+
+# Print location of exe
+print(file.path(R.home("bin"), "R"))
