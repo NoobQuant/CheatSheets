@@ -13,3 +13,4 @@ What is the difference between predetermined, strictly exogenous, and Granger ca
 
 Correlation and independence: [No-correlation does not imply independence](https://en.wikipedia.org/wiki/Correlation_and_dependence#Correlation_and_independence). Why? Since correlation is [linear relationship similar to regression coefficient](https://stats.stackexchange.com/a/344619/162538).
 
+What is ergodicity? See equation 1 [of Peters (2019)](https://www.nature.com/articles/s41567-019-0732-0.pdf).
