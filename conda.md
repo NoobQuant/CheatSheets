@@ -47,15 +47,16 @@ Tested on Windows machine and Anaconda3 distribution *2020.02-Windows-x86_64*.
    - *~/Anaconda3/Library/usr/bin*
    - *~/Anaconda3/Library/bin*
    - *~/Anaconda3/Scripts*
+ - (optional) Install [mamba](https://github.com/TheSnakePit/mamba) and later on replace ```conda``` commands with ```mamba``` for speed: ```conda install mamba -c conda-forge``` 
  - Install *dev* environemnt either by
    - (*OS specific*) running specification .txt file *nq_dev_py36_r36.txt*: ```conda env create --name dev --file nq_dev_py36_r36.txt```
      - If error raised try removing line "@EXPLICIT" from the file and try again.
    - (*OS unspecific*) running environment .yml file *nq_dev_py36_r36.yml*: ```conda env create --file nq_dev_py36_r36.yml``` ==>  **seems to have problem with R paths on my Windows machine!**.
-   - running installation commands on conda prompt (see section *Constructing environment specification files* below).
+   - (safest but least specific option) running installation commands on conda prompt (see section *Constructing environment specification files* below).
  - Register Jupyter kernels for to be used from *base*. This should add kernels under user folder, e.g. *C:\Users\<myusername>\AppData\Roaming\jupyter\kernels*
 
 ```
-source activate dev
+conda activate dev
 
 python -m ipykernel install --user --name dev --display-name "dev py"
 
@@ -74,7 +75,9 @@ quit()
  - **Using Python and R in Jupyter Lab/Notebook**
    - Python and R kernels of *dev* **should** be accessible in Jupyter when run from *base* environment. However, I have run to all kinds of problems with the R kernel, e.g. [this](https://github.com/IRkernel/IRkernel/issues/309), [this](https://github.com/jupyter/jupyter/issues/353), and R installation not being found when called from Python instance with *rpy2*.
    - Thus I have found it easier to use Python and R in Jupyter from *dev* environment. **This is why jupyter is also installed in *dev* and not just in *base* as usually suggested** (see e.g. discussion [here](https://stackoverflow.com/a/39623487/7037299)). This means whenever I launch Jupyter I make sure to do this from *dev* environment (e.g. ```conda activate dev; jupyter lab```).
- - **Using Python and R in VSCode**. First Load extensions *Python* and *R*.
+ - **Using Python and R in VSCode**.
+   - Sometimes one might need to reinstall VSCode after new Anaconda installation, as VSCode might not be able to find kernel paths correctly.
+   - Load extensions *Python* and *R*.
    - **Python**: Make sure *dev* Python interpreter is selected. Then from .py file, *Run Python file in terminal* creates a new Python terminal and executes the file. One can also *Run selection/line in Python terminal* to run specific section, in which case the Python terminal jumps into Python and can run/type single commands in the terminal. ```quit()``` to close the Python connection back to terminal. One can also run file/section of it in interactive terminal, in which case VSCode launches Jupyter to create the interactive window. I would however not recommend this too much, rather just run notebooks if desire for interactive computing.
    - **R**: Cannot get this to work; seems like VSCode does not find my *dev* R installation even though ```r.rterm.windows``` explicitly set. Probably because R is not in PATH Variable...
    - **Python notebooks**: By default when VScode launches Jupyter it does it from *base*. If Python and R kernels in *dev* work from *base* and rpy2 finds the R installation in Jupyter then this is fine. But it might be the case that (see above) rpy2 cannot find R installation in *dev*. In this case we need to make sure that VSCode launches Jupyter instance by from *dev*. Two ways to do this:
@@ -82,7 +85,6 @@ quit()
      - Start jupyter from *dev* in separate Anaconda promt and in VSCode select Python interpreter from the Jupyter url that was launched. 
    - **R notebooks**: Not yet possible, but coming: see [here](https://github.com/Microsoft/vscode-python/issues/5078).
 - **Using R in RStudio**: launch RStudio from conda promt ```rstudio```. 
-
 
 ### Addig packages
 Try installing via conda first.
