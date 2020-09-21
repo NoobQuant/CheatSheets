@@ -48,9 +48,7 @@ Tested on Windows machine and Anaconda3 distribution *2020.02-Windows-x86_64*.
    - *~/Anaconda3/Library/bin*
    - *~/Anaconda3/Scripts*
  - (optional) Install [mamba](https://github.com/TheSnakePit/mamba) and later on replace ```conda``` commands with ```mamba``` for speed: ```conda install mamba -c conda-forge``` 
- - Install *dev* environemnt by running creation commands in section *Environment creation*
-
-
+ - Install *dev* environment by running creation commands in section *Environment creation*
  - Register Jupyter kernels for to be used from *base*. This should add kernels under user folder, e.g. *C:\Users\<myusername>\AppData\Roaming\jupyter\kernels*
 
 ```
