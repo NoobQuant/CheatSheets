@@ -48,22 +48,36 @@ Tested on Windows machine and Anaconda3 distribution *2020.02-Windows-x86_64*.
    - *~/Anaconda3/Library/bin*
    - *~/Anaconda3/Scripts*
  - (optional) Install [mamba](https://github.com/TheSnakePit/mamba) and later on replace ```conda``` commands with ```mamba``` for speed: ```conda install mamba -c conda-forge``` 
- - Install *dev* environemnt either by
-   - (*OS specific*) running specification .txt file *nq_dev_py36_r36.txt*: ```conda env create --name dev --file nq_dev_py36_r36.txt```
-     - If error raised try removing line "@EXPLICIT" from the file and try again.
-   - (*OS unspecific*) running environment .yml file *nq_dev_py36_r36.yml*: ```conda env create --file nq_dev_py36_r36.yml``` ==>  **seems to have problem with R paths on my Windows machine!**.
-   - (safest but least specific option) running installation commands on conda prompt (see section *Constructing environment specification files* below).
+ - Install *dev* environemnt by running creation commands in section *Environment creation*
+
+
  - Register Jupyter kernels for to be used from *base*. This should add kernels under user folder, e.g. *C:\Users\<myusername>\AppData\Roaming\jupyter\kernels*
 
 ```
 conda activate dev
-
 python -m ipykernel install --user --name dev --display-name "dev py"
-
 R
 IRkernel::installspec()
 quit()
 ```
+
+### Constructing environment
+
+The *dev* environment is constructed as follows:
+  - Download Anaconda3 installation *2020.02-Windows-x86_64* and install it (archive of Anaconda installations can be found [here](https://repo.anaconda.com/archive/)). This generates the base conda environment (containing e.g. Jupyter).
+  - Create new environment *dev* by commands
+```
+mamba create --name dev anaconda python=3.6 numpy=1.16.4 numpy-base=1.16.4 tzlocal=2.0.0 pandas=0.25.0 seaborn=0.11.0
+conda activate dev
+mamba install -c r r=3.6.0 r-base=3.6.0 r-essentials=3.6.0 r-tidyverse=1.2.1 rtools=3.4.0 r-rjsdmx=2.1_0 r-seasonal=1.7.0 r-wavelets=0.3_0.1 rstudio=1.1.456
+mamba install rpy2==2.9.4
+```
+
+  - Environment is now ready.
+    - One could at this point export environment into construction files that can be used later to spin up the environment. However, building environments from these files does not usually work on different machines (dunno why).
+      - (*OS unspecific*): Export *dev* environment to .yml ```conda env export --no-builds > nq_dev_py36_r36.yml``` (why *--no-builds* see [here](https://github.com/ContinuumIO/anaconda-issues/issues/9480)). Remove explicit prefix from end. Then build environment later by ```conda env create --file nq_dev_py36_r36.yml```.
+      - (*OS specific*): Export *dev* environment to .txt ```conda list --explicit > nq_dev_py36_r36.txt```. Then build enviroment later by ```conda env create --name dev --file nq_dev_py36_r36.txt```. If error raised try removing line "@EXPLICIT" from the file.
+
 
 ### Using
 
@@ -115,20 +129,7 @@ Some R packages/their correct version are not available via ```conda install```.
 - When using R insallation of a package try first without installing dependencies, as we try to include them via conda. If this fails or dependencies installed via conda have wrong versions available, let R installation install also dependencies. That is: First try <br>```install.packages("mylib", lib="some_R_lib_path", dependencies = FALSE)()))```<br>
 If it does not work, try<br>```install.packages("mylib", lib="some_R_lib_path", dependencies = TRUE)```.
 
-### Constructing environment specification files
-
-The *dev* environment yml was constructed as follows:
-  - Download Anaconda3 installation *2020.02-Windows-x86_64* and install it (archive of Anaconda installations can be found [here](https://repo.anaconda.com/archive/)). This generates the base conda environment (containing e.g. Jupyter).
-  - Create new temporary environment *temp*
-    - pandas and numpy downgraded to match with rpy2
-```
-conda create --name temp anaconda python=3.6 numpy=1.16.4 numpy-base=1.16.4 tzlocal=2.0.0 pandas=0.25.0
-conda activate temp
-conda install -c r r=3.6.0 r-base=3.6.0 r-essentials=3.6.0 r-tidyverse=1.2.1 rtools=3.4.0 r-rjsdmx=2.1_0 r-seasonal=1.7.0 r-wavelets=0.3_0.1 rstudio=1.1.456
-conda install rpy2==2.9.4
-```
-  - Exported *temp* environment to .yml ```conda env export --no-builds > nq_dev_py36_r36.yml``` (why *--no-builds* see [here](https://github.com/ContinuumIO/anaconda-issues/issues/9480)). Renamed name "temp" in file to "dev" and removed explicit prefix from end.
-  - Exported *temp* environment to .txt ```conda list --explicit > nq_dev_py36_r36.txt```.
+   
 
 ### Other useful links
  - https://stackoverflow.com/questions/38066873/create-anaconda-python-environment-with-all-packages
