@@ -121,6 +121,8 @@ conda install pip #if not done before
 <path_to_env>/bin/pip install <pckg_name>
 ```
 
+It is also possible to use manual *setup.py* installation and it should be enough to just activate the environment: ```conda activate dev; python /path/to/mypackage/setup.py install```, or replace *install* with *develop*. See [here)](https://stackoverflow.com/questions/26556865/anaconda-equivalent-of-setup-py-develop). Sometime it might help to put commad directory to the clodec package folder.
+
 Some R packages/their correct version are not available via ```conda install```. In this case we can R ```install.packages()```. Make the installation into specific folder where to store separate R packages (e.g. if there is standalone R installation put to libpath of that, or some other folder).
 - If possible, install needed dependencies of the package via conda first.
 - Make sure conda *dev* R lib path *~/Anaconda3/envs/dev/lib/R/library* comes before any other R lib path (e.g. the standalone R lib path).<br>```.libPaths(new=c("<my_custom_path>/<env_name>/Lib/R/library", .libPaths()))```<br>
