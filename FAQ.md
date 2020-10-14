@@ -16,3 +16,5 @@ Correlation and independence: [No-correlation does not imply independence](https
 What is ergodicity? See equation 1 of [Peters (2019)](https://www.nature.com/articles/s41567-019-0732-0.pdf).
 
 What is the difference between *factor* and *covariate*? See [here](https://stats.stackexchange.com/a/70826/162538).
+
+Expectation is minimizing squared deviation and median is minimizing absolute deviation: [here](http://gregorygundersen.com/blog/2019/10/04/expectation-median-opt/), [here](https://math.stackexchange.com/questions/113270/the-median-minimizes-the-sum-of-absolute-deviations-the-ell-1-norm), and [here](https://stats.stackexchange.com/questions/118/why-square-the-difference-instead-of-taking-the-absolute-value-in-standard-devia).
