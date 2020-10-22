@@ -168,6 +168,10 @@ git branch -d branch_name
 # https://stackoverflow.com/questions/2003505/how-do-i-delete-a-git-branch-locally-and-remotely
 git push -d <remote_name> <branch_name>
 
+# branch deleted on remote, but still visible locally;
+# remove from local tree
+git branch -d -r origin/coolbranch
+
 # Create new branch with no history
 # Convenient for hidig legazy from public repo
 git checout --orphan branch_name
