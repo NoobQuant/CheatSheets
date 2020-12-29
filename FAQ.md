@@ -25,3 +25,5 @@ SCMs vs. potential outcomes
  - [Perl's comments on Imben's paper *Potential Outcome and Directed Acyclic Graph Approaches to Causality*](http://causality.cs.ucla.edu/blog/index.php/2020/01/29/on-imbens-comparison-of-two-approaches-to-empirical-economics/)
  
 What is the difference between MLE and least-squares? [Here](https://stats.stackexchange.com/questions/143705/maximum-likelihood-method-vs-least-squares-method) and [here](https://stats.stackexchange.com/questions/12562/equivalence-between-least-squares-and-mle-in-gaussian-model).
+
+[Under which assumptions a regression can be interpreted causally?](https://stats.stackexchange.com/a/493905/162538)
