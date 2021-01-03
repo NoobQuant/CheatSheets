@@ -27,3 +27,5 @@ SCMs vs. potential outcomes
 What is the difference between MLE and least-squares? [Here](https://stats.stackexchange.com/questions/143705/maximum-likelihood-method-vs-least-squares-method) and [here](https://stats.stackexchange.com/questions/12562/equivalence-between-least-squares-and-mle-in-gaussian-model).
 
 [Under which assumptions a regression can be interpreted causally?](https://stats.stackexchange.com/a/493905/162538)
+
+[Definition of Structural Causal Model](https://stats.stackexchange.com/a/312130/162538)
