@@ -29,3 +29,5 @@ What is the difference between MLE and least-squares? [Here](https://stats.stack
 [Under which assumptions a regression can be interpreted causally?](https://stats.stackexchange.com/a/493905/162538)
 
 [Definition of Structural Causal Model](https://stats.stackexchange.com/a/312130/162538)
+
+[How are interaction terms representented in DAGs?](https://stats.stackexchange.com/a/350132/162538)
