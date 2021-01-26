@@ -31,3 +31,5 @@ What is the difference between MLE and least-squares? [Here](https://stats.stack
 [Definition of Structural Causal Model](https://stats.stackexchange.com/a/312130/162538)
 
 [How are interaction terms representented in DAGs?](https://stats.stackexchange.com/a/350132/162538)
+
+[What are assumptions behind quantile regression?](https://stats.stackexchange.com/a/321001/162538)
