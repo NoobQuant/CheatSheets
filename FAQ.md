@@ -32,4 +32,4 @@ What is the difference between MLE and least-squares? [Here](https://stats.stack
 
 [How are interaction terms representented in DAGs?](https://stats.stackexchange.com/a/350132/162538)
 
-[What are assumptions behind quantile regression?](https://stats.stackexchange.com/a/321001/162538)
+What are assumptions behind quantile regression?: [here](https://stats.stackexchange.com/a/321001/162538) and [here](https://stats.stackexchange.com/a/39003/162538)
