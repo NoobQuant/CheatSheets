@@ -14,7 +14,8 @@ from manim.animation.fading import FadeOut
 from manim import config, Scene
 from manim.scene.graph_scene import GraphScene
 from manim.mobject.svg.tex_mobject import MathTex
-
+from manim.mobject.types.vectorized_mobject import VGroup
+from manim.mobject.probability import BarChart
 
 # Acces global config, here change background colors
 config.background_color = nq_colors["dark_blue"]
@@ -37,30 +38,50 @@ class LinePlot(GraphScene):
     def __init__(self, **kwargs):
         GraphScene.__init__(
             self,
-            x_min=-10,
-            x_max=10.3,
-            num_graph_anchor_points=100,
-            y_min=-1.5,
-            y_max=1.5,
-            graph_origin=np.array((0.0, 0.0, 0.0)),
+            x_min=0,
+            x_max=12,
+            y_min=-2,
+            y_max=2,
+            graph_origin=np.array((-5.0, 0.0, 0.0)),
             axes_color=nq_textcolors["white"],
-            x_labeled_nums=range(-10, 12, 2),
+            x_labeled_nums=range(0, 12, 2),
             **kwargs
         )
 
     def construct(self):
+
+        # Setup axes and show their creation
         self.setup_axes(animate=True)
+
+        # Get parametric curves
         func_graph = self.get_graph(np.cos, color=nq_colors["steelblue"])
         func_graph2 = self.get_graph(np.sin, color=nq_colors["light_purple"])
-        vert_line = self.get_vertical_line_to_graph(2*math.pi, func_graph, color=nq_colors["orange"])
-        graph_lab = self.get_graph_label(func_graph, label="\\cos(x)")
-        graph_lab2 = self.get_graph_label(func_graph2, label="\\sin(x)", x_val=-10, direction=UP/2)
+        
+        # Get vetical line from x axis to first graph
+        vert_line = self.get_vertical_line_to_graph(
+            x=2*math.pi,
+            graph=func_graph,
+            color=nq_colors["orange"]
+        )
+        
+        # Set label texts
+        graph_lab = self.get_graph_label(func_graph, label="\\cos(x)", x_val=5, direction=UP/2)
         two_pi = MathTex(r"x = 2 \pi")
-        label_coord = self.input_to_graph_point(2*math.pi, func_graph)
+
+        # Get y-point from first line 
+        label_coord = self.input_to_graph_point(
+            x=2*math.pi,
+            graph=func_graph
+        )
+        
+        # Set label next to point we found
         two_pi.next_to(label_coord, RIGHT + UP)
+        
+        # Animate
         self.play(ShowCreation(func_graph), run_time=2)
         self.wait(0.2)
         self.play(ShowCreation(func_graph2), run_time=2)
-        self.wait(3)
-        self.add(func_graph2, vert_line, graph_lab, graph_lab2, two_pi)
+        self.wait(1)
+        self.play(ShowCreation(vert_line), run_time=1)
+        self.add(func_graph2, graph_lab, two_pi)
         self.wait(3)
