@@ -33,3 +33,5 @@ What is the difference between MLE and least-squares? [Here](https://stats.stack
 [How are interaction terms representented in DAGs?](https://stats.stackexchange.com/a/350132/162538)
 
 What are assumptions behind quantile regression?: [here](https://stats.stackexchange.com/a/321001/162538) and [here](https://stats.stackexchange.com/a/39003/162538)
+
+Variance of random variables does not always exist: [here](https://math.stackexchange.com/q/4007718).
