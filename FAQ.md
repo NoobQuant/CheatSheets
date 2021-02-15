@@ -35,3 +35,5 @@ What is the difference between MLE and least-squares? [Here](https://stats.stack
 What are assumptions behind quantile regression?: [here](https://stats.stackexchange.com/a/321001/162538) and [here](https://stats.stackexchange.com/a/39003/162538)
 
 Variance of random variables does not always exist: [here](https://math.stackexchange.com/q/4007718).
+
+t-test vs z-test: [here](https://stats.stackexchange.com/a/507081/162538) and [here](https://stats.stackexchange.com/a/61292/162538).
