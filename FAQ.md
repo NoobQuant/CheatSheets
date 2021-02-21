@@ -37,3 +37,7 @@ What are assumptions behind quantile regression?: [here](https://stats.stackexch
 Variance of random variables does not always exist: [here](https://math.stackexchange.com/q/4007718).
 
 t-test vs z-test: [here](https://stats.stackexchange.com/a/507081/162538) and [here](https://stats.stackexchange.com/a/61292/162538).
+
+Pearl's view of Lucas critique: [Pearl 2015](https://ftp.cs.ucla.edu/pub/stat_ser/r391-reprint.pdf) page 5
+
+Pearl's view on ignorability assumption: Pearl 2009, pages 79, 100, 341
