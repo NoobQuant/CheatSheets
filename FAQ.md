@@ -41,3 +41,5 @@ t-test vs z-test: [here](https://stats.stackexchange.com/a/507081/162538) and [h
 Pearl's view of Lucas critique: [Pearl 2015](https://ftp.cs.ucla.edu/pub/stat_ser/r391-reprint.pdf) page 5
 
 Pearl's view on ignorability assumption: Pearl 2009, pages 79, 100, 341
+
+[How propensity scores differ from adding covariates in a regression?](https://stats.stackexchange.com/questions/8604/how-are-propensity-scores-different-from-adding-covariates-in-a-regression-and)
