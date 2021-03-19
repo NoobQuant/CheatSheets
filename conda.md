@@ -36,20 +36,31 @@ conda create --prefix=my_custom_path\my_env_name python=3.6.7
 ### Anaconda promt to right-click menu
 https://gist.github.com/jiewpeng/8ba446acf329b1801bf91db767d179ea
 
-## NoobQuant conda environment (Python 3.6.10 and R 3.6.0)
+## NoobQuant conda environments
 
-### Installing
-
-Tested on Windows machine and Anaconda3 distribution *2020.02-Windows-x86_64*.
- - Download Anaconda from [here](https://repo.anaconda.com/archive/) and install it (checked "add to path" although not recommended). Paths added
+Anaconda distributions can be do installed from [here](https://repo.anaconda.com/archive/). When installing, check "add to path"(although it is not recommended). Paths added are
    - *~/Anaconda3*
    - *~/Anaconda3/Library/mingw-w64/bin*
    - *~/Anaconda3/Library/usr/bin*
    - *~/Anaconda3/Library/bin*
    - *~/Anaconda3/Scripts*
- - (optional) Install [mamba](https://github.com/TheSnakePit/mamba) and later on replace ```conda``` commands with ```mamba``` for speed: ```conda install mamba -c conda-forge``` 
- - Install *dev* environment by running creation commands in section *Environment creation*
- - Register Jupyter kernels for to be used from *base*. This should add kernels under user folder, e.g. *C:\Users\<myusername>\AppData\Roaming\jupyter\kernels*
+
+Download a desired verion of distribution. Install [mamba](https://github.com/TheSnakePit/mamba) to *base* environment that comes with the distribution and later on replace ```conda``` commands with ```mamba``` for speed: ```conda install mamba -c conda-forge```.
+
+### Version 2018 (Python 3.6.10 and R 3.6.0)
+
+Tested on Windows machine and Anaconda3 distribution *2020.02-Windows-x86_64*.
+
+Run creation commands as detailed below.
+
+```
+mamba create --name dev anaconda python=3.6 numpy=1.16.4 numpy-base=1.16.4 tzlocal=2.0.0 pandas=0.25.0 seaborn=0.11.0
+conda activate dev
+mamba install -c r r=3.6.0 r-base=3.6.0 r-essentials=3.6.0 r-tidyverse=1.2.1 rtools=3.4.0 r-rjsdmx=2.1_0 r-seasonal=1.7.0 r-wavelets=0.3_0.1 rstudio=1.1.456
+mamba install rpy2==2.9.4
+```
+
+Finally, register Register Jupyter kernels for to be used from *base*. This should add kernels under user folder, e.g. *C:\Users\<myusername>\AppData\Roaming\jupyter\kernels*
 
 ```
 conda activate dev
@@ -59,25 +70,38 @@ IRkernel::installspec()
 quit()
 ```
 
-### Constructing environment
+**Notes**
 
-The *dev* environment is constructed as follows:
-  - Download Anaconda3 installation *2020.02-Windows-x86_64* and install it (archive of Anaconda installations can be found [here](https://repo.anaconda.com/archive/)). This generates the base conda environment (containing e.g. Jupyter).
-  - Create new environment *dev* by commands
+- Once environment is ready, one could export environment into construction files that can be used later to spin up the environment. However, building environments from these files does not usually work on different machines (dunno why).
+  - (*OS unspecific*): Export *dev* environment to .yml ```conda env export --no-builds > nq_dev_py36_r36.yml``` (why *--no-builds* see [here](https://github.com/ContinuumIO/anaconda-issues/issues/9480)). Remove explicit prefix from end. Then build environment later by ```conda env create --file nq_dev_py36_r36.yml```.
+  - (*OS specific*): Export *dev* environment to .txt ```conda list --explicit > nq_dev_py36_r36.txt```. Then build enviroment later by ```conda env create --name dev --file nq_dev_py36_r36.txt```. If error raised try removing line "@EXPLICIT" from the file.
+
+
+### Version 2021 (Python 3.8.5 and R 3.6.3)
+
+Tested on Windows machine and Anaconda3 distribution *2020.02-Windows-x86_64*.
+
+Run creation commands as detailed below.
+
 ```
-mamba create --name dev anaconda python=3.6 numpy=1.16.4 numpy-base=1.16.4 tzlocal=2.0.0 pandas=0.25.0 seaborn=0.11.0
-conda activate dev
-mamba install -c r r=3.6.0 r-base=3.6.0 r-essentials=3.6.0 r-tidyverse=1.2.1 rtools=3.4.0 r-rjsdmx=2.1_0 r-seasonal=1.7.0 r-wavelets=0.3_0.1 rstudio=1.1.456
-mamba install rpy2==2.9.4
+mamba create --name dev2021 anaconda=2020.11 rpy2=3.4.2 r-base=3.6.3 r-essentials=3.6 rtools=3.4.0 r-rjsdmx=2.1_0 r-seasonal=1.8.1 r-wavelets=0.3_0.1
 ```
 
-  - Environment is now ready.
-    - One could at this point export environment into construction files that can be used later to spin up the environment. However, building environments from these files does not usually work on different machines (dunno why).
-      - (*OS unspecific*): Export *dev* environment to .yml ```conda env export --no-builds > nq_dev_py36_r36.yml``` (why *--no-builds* see [here](https://github.com/ContinuumIO/anaconda-issues/issues/9480)). Remove explicit prefix from end. Then build environment later by ```conda env create --file nq_dev_py36_r36.yml```.
-      - (*OS specific*): Export *dev* environment to .txt ```conda list --explicit > nq_dev_py36_r36.txt```. Then build enviroment later by ```conda env create --name dev --file nq_dev_py36_r36.txt```. If error raised try removing line "@EXPLICIT" from the file.
+Finally, register Register Jupyter kernels for to be used from *base*. This should add kernels under user folder, e.g. *C:\Users\<myusername>\AppData\Roaming\jupyter\kernels*
 
+```
+conda activate dev2021
+python -m ipykernel install --user --name dev2021 --display-name "dev2021 py"
+R
+IRkernel::installspec()
+quit()
+```
 
-### Using
+**Notes**
+ - Problem with *rstudio*; version 1.1.456 currently available in conda seems too old. Cannot install RStudio to this environment. MIght be able to use a standalone installation of RStudio and connect it to this R installation? At least cannot use one from different conda environment (trying to change used R will crash and prevent RStudio from launching again).
+ - In case of Jupyter kernel dying/restarting when running rpy2 commands, it might be due to R HOME path not correctly specified. In this cae add it, see e.g. [this](https://stackoverflow.com/a/60869259/7037299) and [this](https://stackoverflow.com/questions/39347782/getting-segmentation-fault-core-dumped-error-while-importing-robjects-from-rpy2/53639407#53639407).
+
+## Using NoobQuant conda environments
 
  - When running either Python and R instance, make sure
    - Python exe is *~/Anaconda3/envs/dev/python.exe*
