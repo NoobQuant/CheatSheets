@@ -198,6 +198,9 @@ git clone --single-branch --branch branch_name path_to_repo/.git
 # If we also want to remove link to origin
 git remote remove origin
 
+# Make clone of only latest commit in given local repository branch 
+git clone --depth 1 -b <mybranch> file://<abs_path_to_repo>
+
 ##############
 Check what has already been merged
 ##############
