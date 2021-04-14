@@ -20,6 +20,8 @@
 
 - What is the difference between MLE and least-squares? [Here](https://stats.stackexchange.com/questions/143705/maximum-likelihood-method-vs-least-squares-method) and [here](https://stats.stackexchange.com/questions/12562/equivalence-between-least-squares-and-mle-in-gaussian-model).
 
+[What does ceteris paribus mean in regression for controls? At what values are they kept?](https://stats.stackexchange.com/q/180155/162538)
+
 ## Time series - general
 
 - What is ergodicity? See equation 1 of [Peters (2019)](https://www.nature.com/articles/s41567-019-0732-0.pdf).
