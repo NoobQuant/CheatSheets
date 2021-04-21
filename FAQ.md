@@ -16,6 +16,11 @@
 
 - What is a *test statistic*? Imbens & Rubin (2015), page 64.
 
+- Why would we add independent variables to a regression?
+  - In observational studies with causal interpretations: to adjust for confounding
+  - In observational studies with no explicit causal interpretation: make allow for comparisons between units, eg. "when comparing two children whose mothers have the same level of education, the child whose mother is X IQ points higher is predicted to have a test score that is 6x higher, on average" (Gelman, Hill, Vehatari 2021 p. 134)
+  - In predection tasks, to increase (in-sample) goodness of fit ([non-decreasing property of R2](https://stats.stackexchange.com/a/401466/162538))
+
 ## Estimation
 
 - What is the difference between MLE and least-squares? [Here](https://stats.stackexchange.com/questions/143705/maximum-likelihood-method-vs-least-squares-method) and [here](https://stats.stackexchange.com/questions/12562/equivalence-between-least-squares-and-mle-in-gaussian-model).
