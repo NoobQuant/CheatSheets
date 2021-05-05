@@ -51,7 +51,10 @@
 
 - Pearl's view of Lucas critique: [Pearl 2015](https://ftp.cs.ucla.edu/pub/stat_ser/r391-reprint.pdf) page 5
 
-- [How propensity scores differ from adding covariates in a regression?](https://stats.stackexchange.com/questions/8604/how-are-propensity-scores-different-from-adding-covariates-in-a-regression-and)
+- How propensity scores differ from adding covariates in a regression?
+  - [In theory the same](https://stats.stackexchange.com/a/8610/162538)
+  - [Regressions extrapolates](https://stats.stackexchange.com/a/8655/162538)
+  - [Using both is "doubly robust"](https://stats.stackexchange.com/a/248967/162538), see [this paper](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2943670/) section 5.
 
 ## Causality - PO vs SCM
 
