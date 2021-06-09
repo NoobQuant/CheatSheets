@@ -66,7 +66,7 @@ Finally, register Register Jupyter kernels for to be used from *base*. This shou
 conda activate dev
 python -m ipykernel install --user --name dev --display-name "dev py"
 R
-IRkernel::installspec()
+IRkernel::installspec(name='dev', displayname='dev')
 quit()
 ```
 
@@ -93,7 +93,7 @@ Finally, register Register Jupyter kernels for to be used from *base*. This shou
 conda activate dev2021
 python -m ipykernel install --user --name dev2021 --display-name "dev2021 py"
 R
-IRkernel::installspec()
+IRkernel::installspec(name='dev2021', displayname='dev2021')
 quit()
 ```
 
