@@ -51,6 +51,8 @@
 
 - Pearl's view of Lucas critique: [Pearl 2015](https://ftp.cs.ucla.edu/pub/stat_ser/r391-reprint.pdf) page 5
 
+- [Granger Causality vs. Pearl's/Rubin's causality frameworks](https://stats.stackexchange.com/q/144328/162538)
+
 - How propensity scores differ from adding covariates in a regression?
   - [In theory the same](https://stats.stackexchange.com/a/8610/162538)
   - [Regressions extrapolates](https://stats.stackexchange.com/a/8655/162538)
