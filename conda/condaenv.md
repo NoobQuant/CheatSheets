@@ -69,11 +69,14 @@ See more in section *Using NoobQuant conda environments* below.
 ### dev_2018: Year 2018 version with Python 3.6.10 and R 3.6.0
 
 ```
-mamba create --name dev anaconda python=3.6 numpy=1.16.4 numpy-base=1.16.4 tzlocal=2.0.0 pandas=0.25.0 seaborn=0.11.0
-conda activate dev
+mamba create --name dev2018 anaconda python=3.6 numpy=1.16.4 numpy-base=1.16.4 tzlocal=2.0.0 pandas=0.25.0 seaborn=0.11.0
+conda activate dev2018
 mamba install -c r r=3.6.0 r-base=3.6.0 r-essentials=3.6.0 r-tidyverse=1.2.1 rtools=3.4.0 r-rjsdmx=2.1_0 r-seasonal=1.7.0 r-wavelets=0.3_0.1 rstudio=1.1.456
 mamba install rpy2==2.9.4
 ```
+
+**Notes about dev_2018**
+ - Update 2021-03-31: Including *rstudio* throws an error *Problem: package qt-5.12.9-h5909a2a_4 requires icu >=68.1,<69.0a0, but none of the providers can be installed*. Works without it.
 
 ### dev_2021: Year 2021 version with Python 3.8.5 and R 3.6.3
 
