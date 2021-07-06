@@ -5,8 +5,17 @@
 ### List packages
 ```conda list```
 
+### Search for a package
+```conda search -f <pckg_name>```
+
 ### List environments
 ```conda info --envs```
+
+### conda channels
+
+```conda config --add channels <channel_name>```
+
+```conda config --show channels```
 
 ## Environments
 
