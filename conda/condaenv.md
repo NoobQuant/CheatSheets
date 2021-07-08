@@ -188,6 +188,10 @@ conda activate dev2021
 rstudio
 ```
 
+### Calling R from a Python instance
+
+FILL
+
 ## Adding packages to environments
 
 The benefit of using `conda` environments comes from managing dependencies between packages. When installing packages with `conda`, it tries to make sure that new packages do not cause conflicts in the environment. Thus, no matter if Python or R package, **always try installing packages first via `conda`/`mamba`**:
